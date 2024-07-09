@@ -4,18 +4,17 @@ const swap = (listToSort, iIndex, jIndex) => {
   listToSort[jIndex] = temp;
 };
 
-let count = 0;
+let iterations = 0;
 const pivotAndSort = (listToSort, low, high) => {
-  // console.groupCollapsed(low, high);
   if (low >= high) {
-    // console.groupEnd();
     return;
   }
-  count++;
+  console.groupCollapsed(low, high, 'pivotAndSort');
+  iterations++;
   const pivotIndex = partition(listToSort, low, high);
   pivotAndSort(listToSort, low, pivotIndex - 1);
   pivotAndSort(listToSort, pivotIndex + 1, high);
-  // console.groupEnd();
+  console.groupEnd();
 };
 
 const partition = (listToSort, low, high) => {
@@ -44,15 +43,15 @@ const quickSort = (listToSort) => {
   pivotAndSort(listToSort, 0, listToSort.length - 1);
 };
 
+const arrayToSort = [6, 5, 11, 4, 2, 5, 10, 3, 7, 8, 9]; // 7 iterations
 // const arrayToSort = [5, 4, 6, 2, 1, 10, 7, 3, 8, 9]; // 8 iterations
-// const arrayToSort = [6, 5, 11, 4, 2, 5, 10, 3, 7, 8, 9]; // 7 iterations
 // const arrayToSort = [11, 10, 9, 8, 7, 6, 5, 5, 4, 3, 2]; // 9 iterations
 // const arrayToSort = [2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11]; // 9 iterations
 // const arrayToSort = [7, 8, 9, 10, 11, 6, 5, 5, 4, 3, 2]; // 8 iterations
 // const arrayToSort = [6, 5, 5, 4, 3, 2, 11, 10, 9, 8, 7]; // 9 iterations
-const arrayToSort = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]; // 10 iterations
+// const arrayToSort = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]; // 10 iterations
 console.log('initial array:', arrayToSort);
 
 quickSort(arrayToSort);
 console.log('sorted array:', arrayToSort);
-console.log('count:', count);
+console.log('iterations:', iterations);
